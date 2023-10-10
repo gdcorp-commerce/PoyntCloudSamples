@@ -3,6 +3,8 @@ import { useResources } from "@/context/resources";
 import CommerceSdk from "@gdcorp-commerce/commerce-sdk";
 import { useState } from "react";
 
+const authidp = "";
+
 export default function Actions() {
   const {
     store_id: storeId,
@@ -21,13 +23,13 @@ export default function Actions() {
   });
 
   const orders = async () => {
-    console.log(newOrder);
-    const { access_token } = await sdk.validation.authentication();
+    // console.log(newOrder);
+    // const { access_token } = await sdk.validation.authentication();
 
     const getOrders = await sdk.orders.request({
       context: {
         storeId,
-        godaddyJwt: access_token,
+        godaddyJwt: authidp,
       },
       body: "query OrdersQuery { sale:1 }",
       requestId: "",
