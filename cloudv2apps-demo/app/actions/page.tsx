@@ -1,9 +1,9 @@
 "use client";
 import { useResources } from "@/context/resources";
-import CommerceSdk from "@gdcorp-commerce/commerce-sdk";
 import { useState } from "react";
 
-const authidp = "";
+const authidp =
+  "eyJhbGciOiAiUlMyNTYiLCAia2lkIjogIkF0Qzlrc3dMc0EifQ.eyJhdXRoIjogImJhc2ljIiwgImZ0YyI6IDEsICJpYXQiOiAxNjk2OTU1NDE3LCAianRpIjogIkFnZnFxemw4ZEhEb3ZSb2tuUXdkVFEiLCAidHlwIjogImlkcCIsICJ2YXQiOiAxNjk2OTU1NDE3LCAiZmFjdG9ycyI6IHsia19wdyI6IDE2OTY5NTU0MTd9LCAicGVyIjogdHJ1ZSwgImhiaSI6IDE2OTY5NTU0MTcsICJmcGlkIjogIjQwNDVkYjllLTFmMjktMTFlZC1iYWQ1LWZhMTYzZTY5YWJmYyIsICJzaG9wcGVySWQiOiAiNTIzOTU5MCIsICJjaWQiOiAiZTYwZjRjN2ItOWEyOC00YjViLTg3ZTQtMzhiOTE1MGYwMTA1IiwgInBsaWQiOiAiMSIsICJwbHQiOiAxLCAic2hhcmQiOiAiMDAwMCIsICJpZGVudGl0eSI6ICI4ZTVkN2ZiZS1jNzQyLTExZWQtOWNjNC00ZTBhYmIyMGRhY2UifQ.Xz0KEFo7m3cMNQ_bSuvK22viJko2Pvf2m5D-sMYzN14IIiQClnRPrZJuofjONDCzwGvt1zfH__pqw-SJdSsCA50fYqHxU2lgJWaO4qjFaZdGvWBvkrkfroR_-HKsuIvo_i8NSXhOxMo8ia7gJhKhRuF0G1GlqpCqrk43VvR29jvdRTTpY-zHOFlSGNSmD09IuY26QTcfXolDWBbmQDgFvGBIUGjIDEL9YZtDxfR_NOhNEGkO-KjlsqO7nZFHX3XD0D9gKSGvtPW9K3_oY9r-D-wb7zZHUixtr39bw-MGwWQRVQ1l-9vJzZ_FpsUsxOTD0foM2YjqPk0AFIAIGd42VA";
 
 export default function Actions() {
   const {
@@ -15,26 +15,22 @@ export default function Actions() {
   } = useResources();
   const [newOrder, setNewOrder] = useState<string>("");
 
-  const sdk = new CommerceSdk({
-    clientId,
-    clientSecret,
-    env,
-    scope,
-  });
-
   const orders = async () => {
-    // console.log(newOrder);
-    // const { access_token } = await sdk.validation.authentication();
-
-    const getOrders = await sdk.orders.request({
-      context: {
-        storeId,
-        godaddyJwt: authidp,
-      },
-      body: "query OrdersQuery { sale:1 }",
-      requestId: "",
-    });
-    console.log(getOrders);
+    try {
+      await fetch("/api/orders", {
+        method: "POST",
+        body: JSON.stringify({
+          clientId,
+          clientSecret,
+          env,
+          scope,
+          storeId,
+          authidp,
+        }),
+      });
+    } catch (error) {
+      console.log({ error });
+    }
   };
 
   return (
