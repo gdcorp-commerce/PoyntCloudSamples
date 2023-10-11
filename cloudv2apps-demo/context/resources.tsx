@@ -5,7 +5,7 @@ interface ResourcesContextProps {
   store_id: string;
   scope: string;
   client_id: string;
-
+  client_secret: string;
   env: string;
   ssoUri: string;
   appName: string;
@@ -28,6 +28,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
   const ssoUri =
     "https://sso.dev-godaddy.com/authorize?client_id=c9c62f88-0b3f-430c-8b50-3e375f9cc7a1&scope=commerce.order:create&redirect_uri=https%3A%2F%2Fwww.bar.com";
   const clientId = "c9c62f88-0b3f-430c-8b50-3e375f9cc7a1";
+  const clientSecret = "RyEiVQJawqVCjiPgh2LJAHp0GEwZSOWC";
   const env = "development";
   const scope = "commerce.order:create";
 
@@ -36,6 +37,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
       store_id: storeId,
       ssoUri,
       client_id: clientId,
+      client_secret: clientSecret,
       env,
       scope,
       appName,
