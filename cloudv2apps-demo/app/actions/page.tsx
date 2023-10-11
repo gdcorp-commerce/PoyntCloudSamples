@@ -15,7 +15,6 @@ export default function Actions() {
         method: "POST",
         body: JSON.stringify({
           clientId,
-          clientSecret: "",
           env,
           scope,
           storeId,
