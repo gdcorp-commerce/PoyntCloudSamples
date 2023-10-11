@@ -28,7 +28,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
   const ssoUri =
     "https://sso.dev-godaddy.com/authorize?client_id=c9c62f88-0b3f-430c-8b50-3e375f9cc7a1&scope=commerce.order:create&redirect_uri=https%3A%2F%2Fwww.bar.com";
   const clientId = "c9c62f88-0b3f-430c-8b50-3e375f9cc7a1";
-  const clientSecret = "RyEiVQJawqVCjiPgh2LJAHp0GEwZSOWC";
+  const clientSecret = "";
   const env = "development";
   const scope = "commerce.order:create";
 
