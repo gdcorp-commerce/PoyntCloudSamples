@@ -3,6 +3,7 @@ import { useResources } from "@/context/resources";
 import { useState } from "react";
 
 const authidp = "";
+
 export default function Actions() {
   const {
     store_id: storeId,
@@ -43,6 +44,8 @@ export default function Actions() {
       <h1 className="text-white mb-10">Actions</h1>
       <div className="grid grid-cols-3 gap-4">
         <div className="h-38 border border-white p-4 rounded max-w-xs">
+          <h1 className="underline mb-2">Create Order</h1>
+
           <div>
             <h3 className="text-white mb-2">Order Name</h3>
             <input
