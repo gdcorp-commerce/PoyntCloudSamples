@@ -3,13 +3,7 @@ import { useResources } from "@/context/resources";
 import { useState } from "react";
 
 export default function Actions() {
-  const {
-    store_id: storeId,
-    client_id: clientId,
-    client_secret: clientSecret,
-    env,
-    scope,
-  } = useResources();
+  const { store_id: storeId, client_id: clientId, env, scope } = useResources();
   const [orderName, setNewOrderName] = useState<string>("");
   const [orderQuantity, setOrderQuantity] = useState<number>(0);
   const [orderDiscount, setOrderDiscount] = useState<number>(0);
@@ -21,7 +15,7 @@ export default function Actions() {
         method: "POST",
         body: JSON.stringify({
           clientId,
-          clientSecret,
+          clientSecret: "",
           env,
           scope,
           storeId,
