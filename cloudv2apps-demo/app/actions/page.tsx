@@ -2,8 +2,6 @@
 import { useResources } from "@/context/resources";
 import { useState } from "react";
 
-const authidp = "";
-
 export default function Actions() {
   const {
     store_id: storeId,
@@ -27,7 +25,7 @@ export default function Actions() {
           env,
           scope,
           storeId,
-          authidp,
+          authidp: "",
           orderName,
           orderPrice,
           orderQuantity,
