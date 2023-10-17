@@ -1,4 +1,4 @@
-import CommerceSdk from "@gdcorp-commerce/commerce-sdk";
+import CommerceSdk, { SdkAuthType } from "@gdcorp-commerce/commerce-sdk";
 import { NextRequest, NextResponse } from "next/server";
 
 const input = {
@@ -66,21 +66,19 @@ export async function POST(request: NextRequest) {
     clientId,
     clientSecret,
     env,
-    scope,
     storeId,
-    authidp,
     orderName,
     orderPrice,
     orderQuantity,
     orderDiscount,
   } = await request.json();
-
   try {
     const sdk = new CommerceSdk({
       clientId,
       clientSecret,
       env,
-      scope,
+      scope: "commerce.order:create",
+      authType: "service" as SdkAuthType.service,
     });
 
     input.input.context.storeId = storeId;
@@ -123,10 +121,9 @@ export async function POST(request: NextRequest) {
     } = await sdk.orders.request({
       context: {
         storeId,
-        godaddyJwt: authidp,
       },
       body: requestBody,
-      requestId: "1234",
+      requestId: "abc456alantest7893",
     });
 
     return NextResponse.json({
