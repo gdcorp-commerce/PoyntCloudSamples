@@ -17,9 +17,11 @@ export default function Actions() {
   const [storeId, setStoreId] = useState<string>(stores[0]);
   const [orders, setOrders] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingCreate, setLoadingCreate] = useState<boolean>(false);
 
   const createOrder = async () => {
     try {
+      setLoadingCreate(true);
       await fetch("/api/orders-create", {
         method: "POST",
         body: JSON.stringify({
@@ -33,7 +35,12 @@ export default function Actions() {
           orderDiscount,
         }),
       });
+      setLoadingCreate(false);
+      if (!loadingCreate) {
+        getOrders();
+      }
     } catch (error) {
+      setLoadingCreate(false);
       console.log({ error });
     }
   };
@@ -137,6 +144,7 @@ export default function Actions() {
           </div>
 
           <button
+            disabled={loadingCreate}
             onClick={() => createOrder()}
             className="bg-transparent border border-white text-white px-12 py-3 rounded hover:bg-white hover:border-black hover:text-black cursor-pointer"
           >

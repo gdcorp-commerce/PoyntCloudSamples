@@ -1,4 +1,4 @@
-import CommerceSdk, { SdkAuthType } from "@gdcorp-commerce/commerce-sdk";
+import CommerceSdk, { SdkAuthType } from "@commerce/sdk";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {

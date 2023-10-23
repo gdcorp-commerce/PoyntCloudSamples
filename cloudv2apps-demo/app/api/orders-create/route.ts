@@ -1,4 +1,4 @@
-import CommerceSdk, { SdkAuthType } from "@gdcorp-commerce/commerce-sdk";
+import CommerceSdk, { SdkAuthType } from "@commerce/sdk";
 import { NextRequest, NextResponse } from "next/server";
 
 const input = {
@@ -72,6 +72,7 @@ export async function POST(request: NextRequest) {
     orderQuantity,
     orderDiscount,
   } = await request.json();
+
   try {
     const sdk = new CommerceSdk({
       clientId,
