@@ -1,6 +1,5 @@
 "use client";
 import { useResources } from "@/context/resources";
-import CommerceSdk from "@gdcorp-commerce/commerce-sdk";
 
 export default function Home() {
   const { ssoUri } = useResources();
